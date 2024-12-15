@@ -3,5 +3,14 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "types": ["@types/node"],
+    "baseUrl": "./src", // Sets the base URL for imports to the `src` folder
+    "paths": {
+      "@/*": ["./*"] // Alias @/ to src/
+    },
+    "noUnusedLocals": false, // Disables errors for unused local variables
+    "noUnusedParameters": false // Disables errors for unused function parameters
+  }
 }

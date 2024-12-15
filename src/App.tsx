@@ -1,10 +1,24 @@
-// import { useState } from "react";
 import "./App.css";
+import {
+  QueryProvider,
+  ThemeProvider,
+  LocalizationProvider,
+  SnackbarProvider,
+} from "@/components/providers";
+import AppRoutes from "./AppRoutes";
 
 function App() {
-  // const [count, setCount] = useState(0);
-
-  return <>HELLO VITE</>;
+  return (
+    <QueryProvider>
+      <ThemeProvider>
+        <LocalizationProvider>
+          <SnackbarProvider>
+            <AppRoutes />
+          </SnackbarProvider>
+        </LocalizationProvider>
+      </ThemeProvider>
+    </QueryProvider>
+  );
 }
 
 export default App;
