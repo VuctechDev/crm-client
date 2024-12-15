@@ -2,21 +2,19 @@ import axios, { AxiosError } from "axios";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 export const apiClient = axios.create({
-  baseURL: "http://localhost:3001/api",
+  baseURL: process.env.VERCEL_API_BASE_URL,
 });
 
 export const apiClient2 = axios.create({
-  baseURL: "https://crm-api.pikado.net/api",
-  // baseURL: "http://localhost:1808/api",
+  baseURL: process.env.API_BASE_URL,
 });
 
 export const publicApiClient = axios.create({
-  baseURL: "http://localhost:3001/api",
+  baseURL: process.env.VERCEL_API_BASE_URL,
 });
 
 export const fileProcessorApiClient = axios.create({
-  // baseURL: process.env.NEXT_PUBLIC_FILE_PROCESSOR_URL,
-  baseURL: "",
+  baseURL: process.env.FILE_PROCESSOR_URL,
 });
 
 export const isTokenExpired = (token: string): boolean => {
