@@ -3,6 +3,7 @@ import { JwtPayload, jwtDecode } from "jwt-decode";
 
 export const apiClient = axios.create({
   baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
+  // baseURL: "http://localhost:3000/api",
 });
 
 export const apiClient2 = axios.create({
@@ -11,6 +12,7 @@ export const apiClient2 = axios.create({
 
 export const publicApiClient = axios.create({
   baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
+  // baseURL: "http://localhost:3000/api",
 });
 
 export const fileProcessorApiClient = axios.create({
@@ -53,7 +55,7 @@ apiClient.interceptors.request.use(
     const accessToken = await validateSession();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
-      config.headers["Access-Control-Allow-Origin"] = "*";
+      // config.headers["Access-Control-Allow-Origin"] = "*";
     }
     return config;
   },
@@ -64,11 +66,9 @@ apiClient.interceptors.request.use(
 
 publicApiClient.interceptors.request.use(
   async (config) => {
-    // const accessToken = await validateSession();
-    // if (accessToken) {
-    // config.headers.Authorization = `Bearer ${accessToken}`;
-    config.headers["Access-Control-Allow-Origin"] = "*";
-    // }
+    // config.headers["Access-Control-Allow-Origin"] = "*";
+    // config.headers["Access-Control-Allow-Headers"] = "*";
+    // config.headers["Access-Control-Allow-Origin"] = "*";
     return config;
   },
   (error: AxiosError) => {

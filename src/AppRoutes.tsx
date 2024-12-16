@@ -11,6 +11,16 @@ const LeadProfilePage = lazy(() => import("./pages/LeadProfilePage"));
 const NewEmailPage = lazy(() => import("./pages/NewEmailPage"));
 const TagsPage = lazy(() => import("./pages/TagsPage"));
 const EmailsPage = lazy(() => import("./pages/EmailsPage"));
+const AddLeadsPage = lazy(() => import("./pages/leads-creation/AddLeadsPage"));
+const CardsUploadPage = lazy(
+  () => import("./pages/leads-creation/CardsUploadPage")
+);
+const CreateLeadPage = lazy(
+  () => import("./pages/leads-creation/LeadsCreationPage")
+);
+const CsvImportPage = lazy(
+  () => import("./pages/leads-creation/CsvImportPage")
+);
 
 const router = createBrowserRouter([
   {
@@ -24,6 +34,22 @@ const router = createBrowserRouter([
       {
         path: ROUTES.LEADS.ROOT,
         element: <LeadsPage />,
+      },
+      {
+        path: ROUTES.LEADS.ADD.ROOT,
+        element: <AddLeadsPage />,
+      },
+      {
+        path: ROUTES.LEADS.ADD.CARDS,
+        element: <CardsUploadPage />,
+      },
+      {
+        path: ROUTES.LEADS.ADD.NEW,
+        element: <CreateLeadPage />,
+      },
+      {
+        path: ROUTES.LEADS.ADD.CSV,
+        element: <CsvImportPage />,
       },
       {
         path: ROUTES.LEADS.PROFILE,
