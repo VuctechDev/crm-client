@@ -10,7 +10,7 @@ export const apiClient2 = axios.create({
 });
 
 export const publicApiClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
 });
 
 export const fileProcessorApiClient = axios.create({
