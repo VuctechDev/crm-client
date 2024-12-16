@@ -53,6 +53,7 @@ apiClient.interceptors.request.use(
     const accessToken = await validateSession();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
+      // config.headers["Access-Control-Allow-Origin"] = "*";
     }
     return config;
   },
