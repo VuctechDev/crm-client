@@ -8,7 +8,7 @@ import { phone } from "phone";
 import SubmitButton from "../fields/SubmitButton";
 import { useCreateUser, useGetUser, useUpdateUser } from "@/lib/api/user/queries";
 
-const dev = process.env.NODE_ENV === "development";
+const dev = import.meta.env.DEV;
 
 export const initialValues = dev
   ? {

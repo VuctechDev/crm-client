@@ -11,7 +11,7 @@ import { ROUTES } from "@/lib/consts/routes";
 import getSearchQuery from "@/lib/getSearchQuery";
 import PublicPageWrapper from "@/layout/PublicPageWrapper";
 
-const dev = process.env.NODE_ENV === "development";
+const dev = import.meta.env.DEV;
 
 export const initialValues = dev
   ? {

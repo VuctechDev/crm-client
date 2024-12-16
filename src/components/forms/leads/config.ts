@@ -1,7 +1,7 @@
 import phoneCheck from "phone";
 import * as Yup from "yup";
 
-const dev = process.env.NODE_ENV === "development";
+const dev = import.meta.env.DEV;
 
 export const initialValues = dev
   ? {

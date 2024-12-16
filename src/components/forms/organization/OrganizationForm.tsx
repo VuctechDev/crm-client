@@ -17,7 +17,7 @@ import {
 // import { ROUTES } from "@/components/providers/AuthRouteGuard";
 import { useParams } from "react-router-dom";
 
-const dev = process.env.NODE_ENV === "development";
+const dev = import.meta.env.DEV;
 
 export const initialValues = dev
   ? {

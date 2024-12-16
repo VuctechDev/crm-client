@@ -2,19 +2,19 @@ import axios, { AxiosError } from "axios";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 export const apiClient = axios.create({
-  baseURL: process.env.VERCEL_API_BASE_URL,
+  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
 });
 
 export const apiClient2 = axios.create({
-  baseURL: process.env.API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 export const publicApiClient = axios.create({
-  baseURL: process.env.VERCEL_API_BASE_URL,
+  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
 });
 
 export const fileProcessorApiClient = axios.create({
-  baseURL: process.env.FILE_PROCESSOR_URL,
+  baseURL: import.meta.env.VITE_FILE_PROCESSOR_URL,
 });
 
 export const isTokenExpired = (token: string): boolean => {
