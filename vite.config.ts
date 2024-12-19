@@ -1,20 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import vitePluginRequire from "vite-plugin-require";
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  optimizeDeps: {
-    include: ["react-quill", "react-quilljs"],
-  },
-  build: {
-    target: "esnext", // Target modern browsers
-    rollupOptions: {
-      output: {
-        format: "esm", // Ensure ESM output
-      },
-    },
-  },
+  plugins: [react(), vitePluginRequire()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"), // Alias @ to src directory

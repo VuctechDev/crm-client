@@ -31,6 +31,7 @@
     "react-quill": "^2.0.0",
     "react-quilljs": "^2.0.5",
     "react-router-dom": "^6.27.0",
+    "vite-plugin-require": "^1.2.14",
     "yup": "^1.4.0"
   },
   "devDependencies": {
