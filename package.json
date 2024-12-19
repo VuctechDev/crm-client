@@ -16,6 +16,7 @@
     "@fontsource/plus-jakarta-sans": "^5.1.0",
     "@mui/icons-material": "^6.1.5",
     "@mui/material": "^6.1.5",
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@tanstack/react-query": "^5.59.16",
     "@tanstack/react-query-devtools": "^5.59.16",
     "axios": "^1.7.7",

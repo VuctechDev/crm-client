@@ -1,3 +1,4 @@
+import { fileProcessorApiClient } from "@/lib/api";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -7,12 +8,12 @@ const PdfPreview = () => {
   const [pdfBase64, setPdfBase64] = useState(null);
 
   const fetchFile = async () => {
-    fetch("http://localhost:2302/get-pdf")
-      .then((response) => response.json())
+    fileProcessorApiClient
+      .get("/get-pdf")
       .then((data) => {
         // const pdfDataUri = `data:application/pdf;base64,${data.pdf}`;
         // window.open(pdfDataUri, "_blank", "noopener,noreferrer");
-        setPdfBase64(data.pdf);
+        setPdfBase64(data.data.pdf);
       })
       .catch((error) => {
         console.error("Error fetching PDF:", error);
