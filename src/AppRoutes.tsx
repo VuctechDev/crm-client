@@ -5,9 +5,10 @@ import { ROUTES } from "./lib/consts/routes";
 import PublicLayout from "./layout/PublicLayout";
 import LoadingOverlayer from "./components/LoadingOverlayer";
 import PdfPreview from "./components/PreviewPDF";
+import EmailSignaturePage from "./pages/EmailSignaturePage";
 
 const EmailTemplatesPage = lazy(() => import("./pages/EmailTemplatePage"));
-const EmailSignaturePage = lazy(() => import("./pages/EmailSignaturePage"));
+// const EmailSignaturePage = lazy(() => import("./pages/EmailSignaturePage"));
 const EmailConfigPage = lazy(() => import("./pages/EmailConfigPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
