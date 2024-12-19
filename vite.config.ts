@@ -7,6 +7,14 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react-quill", "react-quilljs"],
   },
+  build: {
+    target: "esnext", // Target modern browsers
+    rollupOptions: {
+      output: {
+        format: "esm", // Ensure ESM output
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"), // Alias @ to src directory
