@@ -1,8 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { JwtPayload, jwtDecode } from "jwt-decode";
+import { logOut } from "@/hooks/useLogoutObserver";
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   // baseURL: "http://localhost:3000/api",
 });
 
@@ -11,7 +12,7 @@ export const apiClient2 = axios.create({
 });
 
 export const publicApiClient = axios.create({
-  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   // baseURL: "http://localhost:3000/api",
 });
 
@@ -41,11 +42,17 @@ export const refreshToken = async (): Promise<string> => {
 export const validateSession = async (): Promise<any> => {
   let accessToken = localStorage.getItem("accessToken") ?? "";
   if (!accessToken) {
-    throw new Error("noToken");
+    // logOut();
+
+    console.log("OPAAAAA");
   }
   const expired = isTokenExpired(accessToken);
   if (expired) {
-    return await refreshToken();
+    const roken = await refreshToken();
+    if (!roken) {
+      logOut();
+    }
+    return roken;
   }
   return accessToken;
 };
@@ -80,9 +87,10 @@ apiClient.interceptors.response.use(
   (response) => response, // Pass through successful responses
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      alert("Your session has expired. Please log in again.");
+      logOut();
+      // alert("Your session has expired. Please log in again.");
       // Optionally redirect the user to a login page
-      window.location.href = "/login";
+      // window.location.href = "/login";
     }
     return Promise.reject(error); // Pass the error to the caller
   }

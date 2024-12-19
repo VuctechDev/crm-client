@@ -26,7 +26,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
   const path = useLocation().pathname;
   const active = data.href === path;
   return (
-    <Link to={data.href} style={{ textDecoration: "none" }}>
+    <Link to={data.href} style={{ textDecoration: "none", width: "100%" }}>
       <ListItem
         disablePadding
         sx={(t) => ({
@@ -39,7 +39,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
       >
         <ListItemButton
           sx={(t) => ({
-            minHeight: 48,
+            minHeight: 42,
             display: "flex",
             justifyContent: open ? "center" : "flex-start",
             px: 2.5,

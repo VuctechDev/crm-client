@@ -1,4 +1,4 @@
-import { apiClient, publicApiClient } from "..";
+import { apiClient, publicApiClient, apiClient2 } from "..";
 
 const path = "/auth";
 

@@ -1,11 +1,4 @@
-"use client";
-import React, {
-  FC,
-  ReactElement,
-  useState,
-  DragEvent,
-  ChangeEvent,
-} from "react";
+import { FC, ReactElement, useState, DragEvent, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import { Grid, Hidden, Typography } from "@mui/material";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";

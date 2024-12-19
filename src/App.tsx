@@ -8,12 +8,7 @@ import {
 import AppRoutes from "./AppRoutes";
 
 function App() {
-  console.log(
-    "ENVs: ",
-    import.meta.env.VITE_FILE_PROCESSOR_URL,
-    import.meta.env.VITE_VERCEL_API_BASE_URL,
-    import.meta.env.VITE_API_BASE_URL
-  );
+  console.log("ENVs: ", import.meta.env);
   return (
     <QueryProvider>
       <ThemeProvider>

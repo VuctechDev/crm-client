@@ -26,6 +26,8 @@ export const useLogout = () => {
       queryClient.resetQueries();
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      // window.location.href = ROUTES.AUTH.LOGIN;
+
       navigate(ROUTES.AUTH.LOGIN);
     },
     onError: (error) => openSnackbar(error.message, "error"),

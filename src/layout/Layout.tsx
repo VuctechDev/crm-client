@@ -26,12 +26,18 @@ import { ROUTES } from "@/lib/consts/routes";
 import AppBar from "./AppBar";
 import { Fragment, useState } from "react";
 import DrawerItem from "./DrawerItem";
+import { useLogoutObserver } from "@/hooks/useLogoutObserver";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const drawerItems = [
   {
     label: "leads",
     icon: <PeopleAltOutlinedIcon />,
     href: ROUTES.LEADS.ROOT,
+    acordionLabel: "Marketing",
     nestedLinks: [
       {
         label: "addNew",
@@ -41,11 +47,24 @@ const drawerItems = [
     ],
   },
   {
-    label: "campaigns",
-    icon: <CampaignIcon />,
-    href: ROUTES.CAMPAIGNS,
-    nestedLinks: [],
+    label: "Candidates",
+    icon: <PeopleAltOutlinedIcon />,
+    href: "/candidates",
+    acordionLabel: "HR",
+    nestedLinks: [
+      {
+        label: "addNew",
+        icon: <GroupAddOutlinedIcon />,
+        href: "new",
+      },
+    ],
   },
+  // {
+  //   label: "campaigns",
+  //   icon: <CampaignIcon />,
+  //   href: ROUTES.CAMPAIGNS,
+  //   nestedLinks: [],
+  // },
 
   {
     label: "email",
@@ -120,6 +139,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 });
 
 const Layout: React.FC = () => {
+  useLogoutObserver();
   const { t } = useTranslation();
   const { data: user } = useGetUser();
   const theme = useTheme();
@@ -162,19 +182,53 @@ const Layout: React.FC = () => {
           </Box>
           <Divider />
           <List>
-            {drawerItems.map((item) => (
-              <Fragment key={item.label}>
-                <DrawerItem open={open} data={item} />
-                {item?.nestedLinks.map((nestedItem) => (
-                  <DrawerItem
-                    key={nestedItem.label}
-                    open={open}
-                    data={nestedItem}
-                    nested
-                  />
-                ))}
-              </Fragment>
-            ))}
+            {drawerItems.map((item) =>
+              !item?.acordionLabel ? (
+                <Fragment key={item.label}>
+                  <DrawerItem open={open} data={item} />
+                  {item?.nestedLinks.map((nestedItem) => (
+                    <DrawerItem
+                      key={nestedItem.label}
+                      open={open}
+                      data={nestedItem}
+                      nested
+                    />
+                  ))}
+                </Fragment>
+              ) : (
+                <Accordion
+                  key={item.label}
+                  sx={{ backgroundColor: "inherit !important" }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    {item?.acordionLabel}
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      width: "100%",
+                      padding: "0 0 16px",
+                    }}
+                  >
+                    <DrawerItem open={open} data={item} />
+                    {item?.nestedLinks.map((nestedItem) => (
+                      <DrawerItem
+                        key={nestedItem.label}
+                        open={open}
+                        data={nestedItem}
+                        nested
+                      />
+                    ))}
+                  </AccordionDetails>
+                </Accordion>
+              )
+            )}
           </List>
 
           {open && (

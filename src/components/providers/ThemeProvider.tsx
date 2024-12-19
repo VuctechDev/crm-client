@@ -44,10 +44,11 @@ const sharedTheme: ThemeOptions = {
           textTransform: "capitalize",
         },
         root: {
-          minHeight: "40px",
+          minHeight: "36px",
           borderRadius: "10px",
           textTransform: "capitalize",
-          fontSize: "16px",
+          p: "6px",
+          fontSize: "12px",
           [`@media (max-width:${md}px)`]: {
             fontSize: "12px",
           },
@@ -130,7 +131,7 @@ const sharedTheme: ThemeOptions = {
       },
     },
     body1: {
-      fontSize: "14px",
+      fontSize: "12px",
       [`@media (max-width:${md}px)`]: {
         fontSize: "12px",
       },

@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Menu, MenuItem } from "@mui/material";
 import { useGetUser } from "@/lib/api/user/queries";
 import { useLogout } from "@/lib/api/auth/queries";
+import { logOut } from "@/hooks/useLogoutObserver";
 
 interface AccountMenuProps {}
 
@@ -16,11 +17,11 @@ const AccountMenu: FC<AccountMenuProps> = ({}): ReactElement => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleLogout = async () => {
-    try {
-      mutate();
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   mutate();
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const displayMenu = Boolean(anchorEl);
@@ -50,7 +51,7 @@ const AccountMenu: FC<AccountMenuProps> = ({}): ReactElement => {
             <Typography variant="body2">{user?.email}</Typography>
             <Typography>{user?.organization?.name}</Typography>
           </Box>
-          <MenuItem sx={{ py: "10px" }} onClick={handleLogout}>
+          <MenuItem sx={{ py: "10px" }} onClick={logOut}>
             {t("logout")}
           </MenuItem>
         </Menu>

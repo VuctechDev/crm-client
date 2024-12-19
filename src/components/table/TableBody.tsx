@@ -82,8 +82,8 @@ const Content: FC<ContentProps> = ({
                 key={key}
                 align="right"
                 sx={{
-                  fontSize: 14,
-                  py: "10px",
+                  fontSize: 12,
+                  py: "6px",
                   // display: "flex",
                   // justifyContent: "flex-end"
                 }}

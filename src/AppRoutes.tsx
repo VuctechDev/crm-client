@@ -4,10 +4,18 @@ import Layout from "./layout/Layout";
 import { ROUTES } from "./lib/consts/routes";
 import PublicLayout from "./layout/PublicLayout";
 import LoadingOverlayer from "./components/LoadingOverlayer";
+import PdfPreview from "./components/PreviewPDF";
+
+const EmailTemplatesPage = lazy(() => import("./pages/EmailTemplatePage"));
+const EmailSignaturePage = lazy(() => import("./pages/EmailSignaturePage"));
+const EmailConfigPage = lazy(() => import("./pages/EmailConfigPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const LeadsPage = lazy(() => import("./pages/LeadsPage"));
+const LeadEditPage = lazy(() => import("./pages/LeadEditPage"));
 const LeadProfilePage = lazy(() => import("./pages/LeadProfilePage"));
+const LeadEmailPage = lazy(() => import("./pages/LeadEmailPage"));
+
 const NewEmailPage = lazy(() => import("./pages/NewEmailPage"));
 const TagsPage = lazy(() => import("./pages/TagsPage"));
 const EmailsPage = lazy(() => import("./pages/EmailsPage"));
@@ -29,7 +37,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: ROUTES.HOME,
-        element: <>HOME</>,
+        element: (
+          <>
+            HOME
+            <PdfPreview />
+          </>
+        ),
       },
       {
         path: ROUTES.LEADS.ROOT,
@@ -56,12 +69,32 @@ const router = createBrowserRouter([
         element: <LeadProfilePage />,
       },
       {
+        path: `${ROUTES.LEADS.PROFILE}/${ROUTES.COMMON.EDIT}`,
+        element: <LeadEditPage />,
+      },
+      {
         path: ROUTES.EMAIL.NEW,
         element: <NewEmailPage />,
       },
       {
         path: ROUTES.EMAIL.ROOT,
         element: <EmailsPage />,
+      },
+      {
+        path: ROUTES.EMAIL.TEMPLATES,
+        element: <EmailTemplatesPage />,
+      },
+      {
+        path: ROUTES.EMAIL.SIGNATURE,
+        element: <EmailSignaturePage />,
+      },
+      {
+        path: ROUTES.EMAIL.CONFIG,
+        element: <EmailConfigPage />,
+      },
+      {
+        path: `${ROUTES.EMAIL.NEW}/:_id`,
+        element: <LeadEmailPage />,
       },
       {
         path: ROUTES.TAGS.ROOT,
