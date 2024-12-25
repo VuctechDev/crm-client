@@ -48,8 +48,8 @@ const FilePicker: FC<FilePickerProps> = ({ type, error }): ReactElement => {
       const formData = new FormData();
       myFile.forEach((file) => {
         formData.append("files", file);
-        formData.append("tags", JSON.stringify(tags));
       });
+      formData.append("tags", JSON.stringify(tags));
       const response = await fileProcessorApiClient.post(
         `/process${path}`,
         formData

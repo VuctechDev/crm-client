@@ -60,7 +60,7 @@ const Content: FC<ContentProps> = ({
       {data.map((item: { [key: string]: string | number }, i) => (
         <TableRow
           hover={hover}
-          key={item._id}
+          key={item.id}
           sx={{
             p: "14px",
             marginBottom: "8px",
@@ -76,7 +76,7 @@ const Content: FC<ContentProps> = ({
               <TableCell
                 onClick={(e) => {
                   if (!preventClick) {
-                    handleRowSelect(item._id as string);
+                    handleRowSelect(item.id as string);
                   }
                 }}
                 key={key}

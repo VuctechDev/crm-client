@@ -1,5 +1,5 @@
 export interface OrganizationType {
-  _id: number;
+  id: string;
   industry: string;
   name: string;
   website: string;

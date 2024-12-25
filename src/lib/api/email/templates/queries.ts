@@ -17,7 +17,7 @@ export const useGetEmailTemplates = () => {
 
 export const useGetPaginatedTemplates = (query: string) => {
   return useQuery({
-    queryKey: ["tags", query],
+    queryKey: ["emailTemplates", query],
     queryFn: () => getPaginatedTemplates(query),
   });
 };

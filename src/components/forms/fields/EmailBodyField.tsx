@@ -131,11 +131,11 @@ const EmailBodyField: FC<EmailBodyFieldProps> = ({
         <Dialog open onClose={handleInstructionsModal}>
           <Box sx={{ p: "30px 30px 50px" }}>
             <Typography variant="h4" my="12px">
-              Enhance Your Email Campaigns with Dynamic Email Body
+              Enhance Your Email Campaigns with Dynamic Email Body and Subject
             </Typography>
             <Typography>
               Sending emails to multiple leads just got easier and more
-              efficient with the dynamic email body feature. This innovative
+              efficient with the dynamic email body and subject feature. This innovative
               tool allows you to automate the personalization of each email,
               eliminating the need for manual customization.
             </Typography>
@@ -144,7 +144,7 @@ const EmailBodyField: FC<EmailBodyFieldProps> = ({
             </Typography>
             <Typography>
               Using dynamic tags, you can insert personalized information
-              directly into your email template. This ensures each recipient
+              directly into your email template or subject. This ensures each recipient
               receives a tailored message that resonates with them.
             </Typography>
             <Typography variant="h6" mt="22px" mb="12px">

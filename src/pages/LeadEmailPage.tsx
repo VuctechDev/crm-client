@@ -12,8 +12,8 @@ import { useGetUser } from "@/lib/api/user/queries";
 interface NewLeadEmailPageProps {}
 
 const NewLeadEmailPage: FC<NewLeadEmailPageProps> = (): ReactElement => {
-  const params = useParams() as { _id: string };
-  const { data, isLoading } = useGetLeadById(params?._id);
+  const params = useParams() as { id: string };
+  const { data, isLoading } = useGetLeadById(params?.id);
   const { data: emailConfig, isLoading: configLoading } = useGetEmailConfig();
   const { isLoading: isSignatureLoading } = useGetEmailSignature();
   const { data: user } = useGetUser();
@@ -22,11 +22,11 @@ const NewLeadEmailPage: FC<NewLeadEmailPageProps> = (): ReactElement => {
     return <LoadingOverlayer />;
   }
 
-  let from = `${user?.firstName} ${user?.lastName}`;
+  let emailFrom = `${user?.firstName} ${user?.lastName}`;
   if (emailConfig) {
-    from += ` <${emailConfig?.email}>`;
+    emailFrom += ` <${emailConfig?.email}>`;
   } else {
-    from += ` <${process.env.NEXT_PUBLIC_EMAIL_USER}>`;
+    emailFrom += ` <${import.meta.env.VITE_EMAIL_USER}>`;
   }
   const name = `${data?.firstName} ${data?.lastName}`;
 
@@ -42,7 +42,11 @@ const NewLeadEmailPage: FC<NewLeadEmailPageProps> = (): ReactElement => {
           p: "20px",
         }}
       >
-        <EmailForm to={data?.email} from={from} lead={params?._id} />
+        <EmailForm
+          emailTo={data?.email}
+          emailFrom={emailFrom}
+          lead={params?.id}
+        />
       </Box>
     </PageWrapper>
   );

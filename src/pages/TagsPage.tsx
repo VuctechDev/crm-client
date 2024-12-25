@@ -40,14 +40,14 @@ const TagsPage: FC<Props> = (): ReactElement => {
     setQuery(query);
   };
 
-  const handleModal = (_id?: number) => setDeleteId(_id ? `${_id}` : "");
+  const handleModal = (id?: string) => setDeleteId(id ?? "");
 
   const handleLeadsPreview = (tagID: string) =>
     navigate(`${ROUTES.LEADS.ROOT}?tag=${tagID}`);
 
   const handleDelete = async () => {
     try {
-      await deleteTag(+deleteId);
+      await deleteTag(deleteId);
     } catch (error) {
       console.error(error);
     }
@@ -88,7 +88,7 @@ const TagsPage: FC<Props> = (): ReactElement => {
       ),
     },
     {
-      key: "_id",
+      key: "id",
       render: (value: string, data: TagType) => (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <TooltipIconButton
@@ -148,7 +148,7 @@ const TagsPage: FC<Props> = (): ReactElement => {
               totalCount={data?.total ?? 0}
               skeletonCount={8}
               handleQueryChange={handleQueryChange}
-              handleRowSelect={(_id: string) => null}
+              handleRowSelect={(id: string) => null}
               hover={false}
               filterKeys={[]}
             />

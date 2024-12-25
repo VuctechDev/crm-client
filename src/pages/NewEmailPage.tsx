@@ -13,11 +13,11 @@ const NewEmailPage: FC<Props> = (): ReactElement => {
   const { data: emailConfig, isLoading: isConfigLoading } = useGetEmailConfig();
   const { isLoading: isSignatureLoading } = useGetEmailSignature();
 
-  let from = `${user?.firstName} ${user?.lastName}`;
+  let emailFrom = `${user?.firstName} ${user?.lastName}`;
   if (emailConfig) {
-    from += ` <${emailConfig?.email}>`;
+    emailFrom += ` <${emailConfig?.email}>`;
   } else {
-    from += ` <${import.meta.env.VITE_EMAIL_USER}>`;
+    emailFrom += ` <${import.meta.env.VITE_EMAIL_USER}>`;
   }
 
   if (isSignatureLoading || isConfigLoading) {
@@ -26,7 +26,7 @@ const NewEmailPage: FC<Props> = (): ReactElement => {
 
   return (
     <PageWrapper title="newEmail" center>
-      <EmailForm from={from} />
+      <EmailForm emailFrom={emailFrom} />
     </PageWrapper>
   );
 };

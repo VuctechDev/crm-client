@@ -9,8 +9,8 @@ import PageWrapper from "@/layout/PageWrapper";
 interface LeadEditPageProps {}
 
 const LeadEditPage: FC<LeadEditPageProps> = (): ReactElement => {
-  const params = useParams() as { _id: string };
-  const { data, isLoading } = useGetLeadById(params?._id);
+  const params = useParams() as { id: string };
+  const { data, isLoading } = useGetLeadById(params?.id);
 
   if (isLoading) {
     return <LoadingOverlayer />;

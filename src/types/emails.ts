@@ -3,22 +3,22 @@ import { OrganizationType } from "./organizations";
 import { UserType } from "./user";
 
 export interface EmailType {
-  _id: number;
+  id: string;
   body: string;
-  from: string;
+  emailFrom: string;
   subject: string;
   user: UserType;
   organization: OrganizationType;
   lead: LeadType;
   tag: number;
-  to: string;
+  emailTo: string;
   status: "failed" | "sent" | "read";
   createdAt: string;
   updatedAt: string;
 }
 
 export interface EmailTemplateType {
-  _id: number;
+  id: string;
   name: string;
   description: string;
   body: string;
@@ -28,7 +28,7 @@ export interface EmailTemplateType {
 }
 
 export interface EmailSignatureType {
-  _id: number;
+  id: string;
   body: string;
   user: UserType;
   archived: boolean;
@@ -43,13 +43,13 @@ export interface EmailConfigCreateType {
   iv: string;
   port: string;
   organization: string;
-  user: string;
+  createdBy: string;
 }
 
 export interface EmailConfigPublic {
-  _id: number;
+  id: string;
   email: string;
-  user: UserType;
+  createdBy: UserType;
   createdAt: string;
   updatedAt: string;
 }

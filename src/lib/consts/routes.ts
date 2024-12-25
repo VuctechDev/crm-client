@@ -14,7 +14,7 @@ export const ROUTES = {
   },
   LEADS: {
     ROOT: "/leads",
-    PROFILE: "/leads/:_id",
+    PROFILE: "/leads/:id",
     ADD: {
       ROOT: "/leads/add",
       CARDS: "/leads/add/cards",

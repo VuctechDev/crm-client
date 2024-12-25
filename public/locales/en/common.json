@@ -135,7 +135,7 @@
   "newTemplate": "New template",
   "editTemplate": "Edit template",
   "invalidDynamicKey": "Invalid dynamic key!",
-  "notSupportedDynamicKey": "is not supported as a dynamic body key.",
+  "notSupportedDynamicKey": "is not supported as a dynamic key.",
   "learnAboutDynamicKeys": "Enhance your email campaigns with dynamic email body",
   "learnMore": "Learn More",
   "aiCreatedLeads": "AI powered Leads created",

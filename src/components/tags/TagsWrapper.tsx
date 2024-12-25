@@ -37,7 +37,7 @@ const TagsWrapper: FC<TagsWrapperProps> = ({
       })}
     >
       {dataHandler.map((tag) => (
-        <TagItem key={tag._id} data={tag} {...rest} />
+        <TagItem key={tag.id} data={tag} {...rest} />
       ))}
       {extraCount > 0 && (
         <Typography ml="4px" fontWeight={600}>

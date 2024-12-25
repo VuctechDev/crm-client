@@ -33,8 +33,8 @@ const TagsSelect: FC<TagsSelectProps> = ({
     if (savedTags && onChange && data?.data) {
       onChange(
         data?.data
-          .filter((tag) => savedTags?.includes(`${tag._id}`))
-          .map((x) => x._id)
+          .filter((tag) => savedTags?.includes(`${tag.id}`))
+          .map((x) => x.id)
       );
     }
   }, [savedTags, data?.data]);
@@ -49,13 +49,13 @@ const TagsSelect: FC<TagsSelectProps> = ({
       data?.data.filter(
         (item) =>
           !elementProps?.value.find(
-            (initialTag: TagType) => initialTag._id === item._id
+            (initialTag: TagType) => initialTag.id === item.id
           )
       ) ?? [];
   }
   const handleSelect = (value: TagType[]) => {
     if (onChange) {
-      const ids = value.map((x) => x._id);
+      const ids = value.map((x) => x.id);
       onChange(ids);
       localStorage.setItem("savedTags", JSON.stringify(ids));
     } else if (elementProps) {
@@ -66,7 +66,7 @@ const TagsSelect: FC<TagsSelectProps> = ({
   };
 
   const params = elementProps ?? {
-    defaultValue: data?.data.filter((tag) => savedTags?.includes(`${tag._id}`)),
+    defaultValue: data?.data.filter((tag) => savedTags?.includes(`${tag.id}`)),
   };
 
   return (
@@ -92,7 +92,7 @@ const TagsSelect: FC<TagsSelectProps> = ({
         noOptionsText={isLoading ? "Loading" : "No Options"}
         filterSelectedOptions
         renderTags={(data) =>
-          data.map((tag) => <TagItem key={tag._id} data={tag} mr="8px" />)
+          data.map((tag) => <TagItem key={tag.id} data={tag} mr="8px" />)
         }
         renderInput={(params) => (
           <TextField

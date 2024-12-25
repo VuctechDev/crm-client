@@ -27,6 +27,7 @@ interface CommentsProps {
 
 const Comments: FC<CommentsProps> = ({ parentId }): ReactElement => {
   const { t } = useTranslation();
+  console.log(parentId);
 
   const [count, setCount] = useState(5);
   const [comment, setComment] = useState("");
@@ -37,13 +38,13 @@ const Comments: FC<CommentsProps> = ({ parentId }): ReactElement => {
   const { mutateAsync: deleteComment } = useDeleteComment();
   const { data: user } = useGetUser();
 
-  const handleModal = (_id?: number) => setDeleteModalID(_id ? `${_id}` : "");
+  const handleModal = (id?: string) => setDeleteModalID(id ?? "");
 
   const handleCreate = async () => {
     try {
       await createComment({
         comment,
-        parent: +parentId,
+        parent: parentId,
       });
       setComment("");
     } catch (error) {
@@ -53,7 +54,7 @@ const Comments: FC<CommentsProps> = ({ parentId }): ReactElement => {
 
   const handleDelete = async () => {
     try {
-      await deleteComment(+deleteModalID);
+      await deleteComment(deleteModalID);
       setComment("");
     } catch (error) {
       console.error(error);
@@ -113,7 +114,7 @@ const Comments: FC<CommentsProps> = ({ parentId }): ReactElement => {
         ) : (
           data?.data?.map((comment) => (
             <Box
-              key={comment._id}
+              key={comment.id}
               sx={(t) => ({
                 mt: "20px",
                 [t.breakpoints.down("sm")]: {
@@ -140,9 +141,9 @@ const Comments: FC<CommentsProps> = ({ parentId }): ReactElement => {
                   <Typography variant="body2">
                     {getDisplayDateTime(comment.createdAt)}
                   </Typography>
-                  {user?._id === comment.createdBy._id && (
+                  {user?.id === comment.createdBy.id && (
                     <IconButton
-                      onClick={() => handleModal(comment._id)}
+                      onClick={() => handleModal(comment.id)}
                       sx={(t) => ({
                         fontSize: t.typography.h5.fontSize,
                         ml: "6px",

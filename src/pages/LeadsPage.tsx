@@ -62,7 +62,7 @@ const LeadsPage: FC = (): ReactElement => {
     }
   };
 
-  const handleDeleteModal = (_id?: string) => setDeleteModalId(_id ?? "");
+  const handleDeleteModal = (id?: string) => setDeleteModalId(id ?? "");
 
   const keys = [
     {
@@ -111,7 +111,7 @@ const LeadsPage: FC = (): ReactElement => {
       preventClick: true,
     },
     {
-      key: "_id",
+      key: "id",
       render: (value: string) => (
         <Box display="flex" justifyContent="center">
           <Link to={`${ROUTES.EMAIL.NEW}/${value}`}>
@@ -195,8 +195,8 @@ const LeadsPage: FC = (): ReactElement => {
           totalCount={data?.total ?? 0}
           skeletonCount={8}
           handleQueryChange={handleQueryChange}
-          handleRowSelect={(_id: string) =>
-            navigate(ROUTES.LEADS.ROOT + `/${_id}`)
+          handleRowSelect={(id: string) =>
+            navigate(ROUTES.LEADS.ROOT + `/${id}`)
           }
           hover={true}
           filterKeys={[
@@ -213,7 +213,7 @@ const LeadsPage: FC = (): ReactElement => {
               label: "tags",
               initialValue: selectedTag,
               options: tags?.data.map((tag) => ({
-                value: `${tag._id}`,
+                value: `${tag.id}`,
                 label: tag.tag,
               })),
             },

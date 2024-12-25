@@ -1,10 +1,10 @@
 import { UserType } from "./user";
 
 export interface CommentType {
-  _id: number;
+  id: string;
   comment: string;
   createdBy: UserType;
-  parent: number;
+  parent: string;
   edited: boolean;
   createdAt: string;
   updatedAt: string;

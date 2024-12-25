@@ -11,8 +11,8 @@ import EmailBodyField from "../fields/EmailBodyField";
 // import EmailAIWrapper from "@/components/ai/email/EmailAIButton";
 
 type Keys =
-  | "from"
-  | "to"
+  | "emailFrom"
+  | "emailTo"
   | "tags"
   | "subject"
   | "body"
@@ -39,7 +39,7 @@ const FormFields: FC<FormFieldsProps> = ({ lead }): ReactElement => {
 
   return (
     <Grid container columnSpacing={4} rowGap={2}>
-      {values.to && (
+      {values.emailTo && (
         <Grid item xs={12}>
           {/* <EmailAIWrapper /> */}
         </Grid>
@@ -47,7 +47,7 @@ const FormFields: FC<FormFieldsProps> = ({ lead }): ReactElement => {
 
       {fields.map((name) => {
         const hideItem =
-          (name === "tags" && !!lead) || (name === "to" && !lead);
+          (name === "tags" && !!lead) || (name === "emailTo" && !lead);
         return (
           <>
             {!hideItem && (
@@ -80,7 +80,9 @@ const FormFields: FC<FormFieldsProps> = ({ lead }): ReactElement => {
                   <TextField
                     elementProps={{ ...getFieldProps(name) }}
                     error={getErrorMessage(name)}
-                    readOnly={name === "from" || (name === "to" && !!lead)}
+                    readOnly={
+                      name === "emailFrom" || (name === "emailTo" && !!lead)
+                    }
                   />
                 )}
               </Grid>

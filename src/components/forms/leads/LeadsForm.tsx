@@ -21,7 +21,7 @@ const LeadsForm: FC<LeadsFormProps> = ({ data }): ReactElement => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { mutateAsync: createLead } = useCreateLead();
-  const { mutateAsync: updateLead } = useUpdateLead(`${data?._id}`);
+  const { mutateAsync: updateLead } = useUpdateLead(`${data?.id}`);
 
   const handleSubmit = async (values: any) => {
     try {
@@ -29,7 +29,7 @@ const LeadsForm: FC<LeadsFormProps> = ({ data }): ReactElement => {
         await createLead({
           ...values,
           country: values?.country?.iso3,
-          tags: JSON.stringify(values?.tags.map((x: TagType) => x._id)),
+          tags: values?.tags.map((x: TagType) => x.id),
         });
         navigate(`${ROUTES.LEADS.ROOT}`);
       } else {
@@ -37,12 +37,12 @@ const LeadsForm: FC<LeadsFormProps> = ({ data }): ReactElement => {
           {
             ...values,
             country: values?.country?.iso3,
-            tags: JSON.stringify(values?.tags.map((x: TagType) => x._id)),
+            tags: values?.tags.map((x: TagType) => x.id),
           },
           data
         );
-        await updateLead({ data: changedValues, _id: data._id });
-        navigate(`${ROUTES.LEADS.ROOT}/${data._id}`, { replace: true });
+        await updateLead({ data: changedValues, id: data.id });
+        navigate(`${ROUTES.LEADS.ROOT}/${data.id}`, { replace: true });
       }
     } catch (error) {
       console.error(error);

@@ -12,15 +12,15 @@ import { useSendEmail } from "@/lib/api/email/queries";
 import { useGetEmailSignature } from "@/lib/api/email/signature/queries";
 
 interface EmailFormProps {
-  to?: string;
-  from?: string;
+  emailTo?: string;
+  emailFrom?: string;
   lead?: string;
   tags?: number[];
 }
 
 const EmailForm: FC<EmailFormProps> = ({
-  to,
-  from,
+  emailTo,
+  emailFrom,
   lead,
   tags,
 }): ReactElement => {
@@ -34,12 +34,12 @@ const EmailForm: FC<EmailFormProps> = ({
   }
 
   const handleSubmit = async (values: any) => {
-    const invalid = validateDynamicTags(values.body);
+    const invalid = validateDynamicTags(values.body) || validateDynamicTags(values.subject);
     if (!invalid) {
       try {
         await sendEmail({
           ...values,
-          tags: values?.tags.map((tag: TagType) => tag?._id),
+          tags: values?.tags.map((tag: TagType) => tag?.id),
         });
       } catch (error) {
         console.error(error);
@@ -65,7 +65,7 @@ const EmailForm: FC<EmailFormProps> = ({
       })}
     >
       <Formik
-        initialValues={{ ...initialValues, from, to, body, lead }}
+        initialValues={{ ...initialValues, emailFrom, emailTo, body, lead }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >

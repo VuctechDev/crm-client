@@ -10,7 +10,7 @@ export const getCSVFileName = (query: string, data?: { tags?: TagType[] }) => {
   params.forEach((value, key) => {
     if (!excludeKeys.includes(key)) {
       if (key === "tags" && data?.tags) {
-        const tagName = data?.tags.find((tag) => tag._id === +value)?.tag ?? "";
+        const tagName = data?.tags.find((tag) => tag.id === value)?.tag ?? "";
         values.push(capitalize(tagName));
       } else {
         values.push(capitalize(value));

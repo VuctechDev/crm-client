@@ -27,7 +27,7 @@ export const useCreateComment = () => {
   });
 };
 
-export const useUpdateComment = (_id: string) => {
+export const useUpdateComment = (id: string) => {
   const queryClient = useQueryClient();
   const { openSnackbar } = useSnackbar();
   return useMutation({

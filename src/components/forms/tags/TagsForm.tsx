@@ -17,6 +17,7 @@ interface TagsFormProps {
 }
 
 const TagsForm: FC<TagsFormProps> = ({ data, handleClear }): ReactElement => {
+  console.log(data);
   const { t } = useTranslation();
   const { mutateAsync: createTag } = useCreateTag();
   const { mutateAsync: updateTag } = useUpdateTag();
@@ -63,7 +64,7 @@ const TagsForm: FC<TagsFormProps> = ({ data, handleClear }): ReactElement => {
       </Box>
 
       <Formik
-        key={data?._id}
+        key={data?.id}
         initialValues={initialValuesHandler}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}

@@ -33,7 +33,8 @@ const TemplateForm: FC<TemplateFormProps> = ({
     values: any,
     { resetForm }: { resetForm: () => void }
   ) => {
-    const invalid = validateDynamicTags(values.body);
+    const invalid =
+      validateDynamicTags(values.body) || validateDynamicTags(values.subject);
     if (!invalid) {
       try {
         if (data) {
@@ -78,7 +79,7 @@ const TemplateForm: FC<TemplateFormProps> = ({
       </Box>
 
       <Formik
-        key={data?._id}
+        key={data?.id}
         initialValues={initialValuesHandler}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}

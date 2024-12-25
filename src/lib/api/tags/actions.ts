@@ -29,7 +29,7 @@ export const updateTag = async (
   return response.data;
 };
 
-export const deleteTag = async (_id: number) => {
-  const response = await apiClient.delete(`${path}?_id=${_id}`);
+export const deleteTag = async (id: string) => {
+  const response = await apiClient.delete(`${path}?id=${id}`);
   return response.data;
 };

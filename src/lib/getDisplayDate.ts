@@ -2,10 +2,10 @@ import { t } from "i18next";
 
 const hour = 60 * 1000 * 60;
 
-const getFromUTC = (time: string): number => {
+const getFromUTC = (time: string): string => {
   const d = time ? new Date(time) : new Date();
-  return d.getTime() + 2 * hour - new Date().getTimezoneOffset() * 60 * 1000;
-  // return time;
+  // return d.getTime() + 2 * hour - new Date().getTimezoneOffset() * 60 * 1000;
+  return time;
 };
 
 export const formatNumber = (value: number): string => {

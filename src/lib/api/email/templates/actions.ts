@@ -37,8 +37,8 @@ export const updateEmailTemplate = async (
 };
 
 export const deleteEmailTemplate = async (
-  _id: number
+  id: string
 ): Promise<{ success: boolean }> => {
-  const response = await apiClient.delete(`${path}?_id=${_id}`);
+  const response = await apiClient.delete(`${path}?id=${id}`);
   return response.data;
 };

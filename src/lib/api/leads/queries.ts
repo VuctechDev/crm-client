@@ -15,10 +15,10 @@ export const useGetLeads = (query: string) => {
   });
 };
 
-export const useGetLeadById = (_id: string) => {
+export const useGetLeadById = (id: string) => {
   return useQuery({
-    queryKey: ["lead", _id],
-    queryFn: () => getLeadById(_id),
+    queryKey: ["lead", id],
+    queryFn: () => getLeadById(id),
   });
 };
 
@@ -35,20 +35,20 @@ export const useCreateLead = () => {
   });
 };
 
-export const useUpdateLead = (_id: string) => {
+export const useUpdateLead = (id: string) => {
   const queryClient = useQueryClient();
   const { openSnackbar } = useSnackbar();
   return useMutation({
     mutationFn: updateLead,
     onSuccess: () => {
       openSnackbar("leadUpdatedSuccess");
-      queryClient.invalidateQueries({ queryKey: ["lead", _id] });
+      queryClient.invalidateQueries({ queryKey: ["lead", id] });
     },
     onError: (error) => openSnackbar(error.message, "error"),
   });
 };
 
-export const useDeleteLead = (_id: string) => {
+export const useDeleteLead = (id: string) => {
   const queryClient = useQueryClient();
   const { openSnackbar } = useSnackbar();
   return useMutation({
@@ -56,7 +56,7 @@ export const useDeleteLead = (_id: string) => {
     onSuccess: () => {
       openSnackbar("leadDeletedSuccess");
       queryClient.invalidateQueries({ queryKey: ["leads"] });
-      queryClient.resetQueries({ queryKey: ["lead", _id] });
+      queryClient.resetQueries({ queryKey: ["lead", id] });
     },
     onError: (error) => openSnackbar(error.message, "error"),
   });

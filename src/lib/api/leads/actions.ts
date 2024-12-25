@@ -10,8 +10,8 @@ export const getLeads = async (
   return response.data;
 };
 
-export const getLeadById = async (_id: string): Promise<LeadType> => {
-  const response = await apiClient.get(`${path}/${_id}`);
+export const getLeadById = async (id: string): Promise<LeadType> => {
+  const response = await apiClient.get(`${path}/${id}`);
   return response.data.data;
 };
 
@@ -21,19 +21,19 @@ export const createLead = async (data: LeadType): Promise<any> => {
 };
 
 type UpdateLeadArgs = {
-  _id: number;
+  id: string;
   data: LeadType;
 };
 
 export const updateLead = async ({
-  _id,
+  id,
   data,
 }: UpdateLeadArgs): Promise<any> => {
-  const response = await apiClient.patch(`${path}?_id=${_id}`, data);
+  const response = await apiClient.patch(`${path}?id=${id}`, data);
   return response.data;
 };
 
-export const deleteLead = async (_id: string) => {
-  const response = await apiClient.delete(`${path}?_id=${_id}`);
+export const deleteLead = async (id: string) => {
+  const response = await apiClient.delete(`${path}?id=${id}`);
   return response.data;
 };

@@ -5,18 +5,21 @@ import { ROUTES } from "./lib/consts/routes";
 import PublicLayout from "./layout/PublicLayout";
 import LoadingOverlayer from "./components/LoadingOverlayer";
 import PdfPreview from "./components/PreviewPDF";
-import EmailSignaturePage from "./pages/EmailSignaturePage";
 
 const EmailTemplatesPage = lazy(() => import("./pages/EmailTemplatePage"));
-// const EmailSignaturePage = lazy(() => import("./pages/EmailSignaturePage"));
+const EmailSignaturePage = lazy(() => import("./pages/EmailSignaturePage"));
 const EmailConfigPage = lazy(() => import("./pages/EmailConfigPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const RegisterConfirmation = lazy(() => import("./pages/RegisterConfirmation"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const LeadsPage = lazy(() => import("./pages/LeadsPage"));
 const LeadEditPage = lazy(() => import("./pages/LeadEditPage"));
 const LeadProfilePage = lazy(() => import("./pages/LeadProfilePage"));
 const LeadEmailPage = lazy(() => import("./pages/LeadEmailPage"));
-
+const UserOnboardingPage = lazy(() => import("./pages/onboarding/UserPage"));
+const OrganizationOnboardingPage = lazy(
+  () => import("./pages/onboarding/OrganizationPage")
+);
 const NewEmailPage = lazy(() => import("./pages/NewEmailPage"));
 const TagsPage = lazy(() => import("./pages/TagsPage"));
 const EmailsPage = lazy(() => import("./pages/EmailsPage"));
@@ -94,7 +97,7 @@ const router = createBrowserRouter([
         element: <EmailConfigPage />,
       },
       {
-        path: `${ROUTES.EMAIL.NEW}/:_id`,
+        path: `${ROUTES.EMAIL.NEW}/:id`,
         element: <LeadEmailPage />,
       },
       {
@@ -115,12 +118,25 @@ const router = createBrowserRouter([
         path: ROUTES.AUTH.REGISTER,
         element: <RegisterPage />,
       },
+      {
+        path: ROUTES.AUTH.REGISTER_CONFIRMATION,
+        element: <RegisterConfirmation />,
+      },
     ],
   },
   {
     path: ROUTES.ONBOARDING.ROOT,
-    element: <>ONBOARDING</>,
-    children: [],
+    element: <PublicLayout />,
+    children: [
+      {
+        path: ROUTES.ONBOARDING.USER,
+        element: <UserOnboardingPage />,
+      },
+      {
+        path: ROUTES.ONBOARDING.ORGANIZATION,
+        element: <OrganizationOnboardingPage />,
+      },
+    ],
   },
   {
     path: "*",

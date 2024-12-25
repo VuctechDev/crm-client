@@ -38,11 +38,11 @@ const EmailTemplatesPage: FC<TemplatesPageProps> = (): ReactElement => {
     setQuery(query);
   };
 
-  const handleModal = (_id?: number) => setDeleteId(_id ? `${_id}` : "");
+  const handleModal = (id?: string) => setDeleteId(id ?? "");
 
   const handleDelete = async () => {
     try {
-      await deleteTemplate(+deleteId);
+      await deleteTemplate(deleteId);
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +67,7 @@ const EmailTemplatesPage: FC<TemplatesPageProps> = (): ReactElement => {
       ),
     },
     {
-      key: "_id",
+      key: "id",
       render: (value: string, data: EmailTemplateType) => (
         <Box sx={{ display: "flex" }}>
           <TooltipIconButton
@@ -121,7 +121,7 @@ const EmailTemplatesPage: FC<TemplatesPageProps> = (): ReactElement => {
               totalCount={data?.total ?? 0}
               skeletonCount={8}
               handleQueryChange={handleQueryChange}
-              handleRowSelect={(_id: string) => null}
+              handleRowSelect={(id: string) => null}
               hover={false}
               filterKeys={[]}
             />

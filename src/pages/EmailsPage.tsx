@@ -31,7 +31,7 @@ const EmailsPage: FC<Props> = (): ReactElement => {
 
   const keys = [
     {
-      key: "from",
+      key: "emailFrom",
       render: (value: string, data: { lead: LeadType }) => {
         if (!value) {
           return (
@@ -54,7 +54,7 @@ const EmailsPage: FC<Props> = (): ReactElement => {
       ) => (
         <Typography>
           {value && `${value?.firstName} ${value?.lastName}`} {value && <br />}
-          {`${data?.to}`}
+          {`${data?.emailTo}`}
         </Typography>
       ),
     },
@@ -152,7 +152,7 @@ const EmailsPage: FC<Props> = (): ReactElement => {
           totalCount={data?.total ?? 0}
           skeletonCount={8}
           handleQueryChange={handleQueryChange}
-          handleRowSelect={(_id: string) => null}
+          handleRowSelect={(id: string) => null}
           hover={false}
           filterKeys={[
             {

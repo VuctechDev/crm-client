@@ -13,8 +13,8 @@ export const getComments = async (
   return response.data.data;
 };
 
-export const getCommentById = async (_id: string): Promise<CommentType> => {
-  const response = await apiClient.get(`${path}/${_id}`);
+export const getCommentById = async (id: string): Promise<CommentType> => {
+  const response = await apiClient.get(`${path}/${id}`);
   return response.data.data;
 };
 
@@ -26,19 +26,19 @@ export const createComment = async (
 };
 
 type UpdateCommentArgs = {
-  _id: number;
+  id: string;
   data: CommentType;
 };
 
 export const updateComment = async ({
-  _id,
+  id,
   data,
 }: UpdateCommentArgs): Promise<any> => {
-  const response = await apiClient.patch(`${path}?_id=${_id}`, data);
+  const response = await apiClient.patch(`${path}?id=${id}`, data);
   return response.data;
 };
 
-export const deleteComment = async (_id: number) => {
-  const response = await apiClient.delete(`${path}?_id=${_id}`);
+export const deleteComment = async (id: string) => {
+  const response = await apiClient.delete(`${path}?id=${id}`);
   return response.data;
 };

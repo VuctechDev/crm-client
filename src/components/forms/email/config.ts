@@ -4,8 +4,8 @@ const dev = import.meta.env.DEV;
 
 export const initialValues = dev
   ? {
-      from: "",
-      to: "",
+      emailFrom: "",
+      emailTo: "",
       tags: [],
       template: "",
       signature: "Default",
@@ -13,8 +13,8 @@ export const initialValues = dev
       body: "",
     }
   : {
-      from: "",
-      to: "",
+      emailFrom: "",
+      emailTo: "",
       tags: [],
       template: "",
       signature: "Default",
@@ -25,7 +25,7 @@ export const initialValues = dev
 export type InitialValues = typeof initialValues;
 
 export const validationSchema = Yup.object().shape({
-  from: Yup.string().required("requiredField").max(50, "max50char"),
+  emailFrom: Yup.string().required("requiredField").max(50, "max50char"),
   // to: Yup.string()
   //   .required("requiredField")
   //   .max(60, "max60char")

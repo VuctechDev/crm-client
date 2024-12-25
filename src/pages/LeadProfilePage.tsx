@@ -22,10 +22,10 @@ import { useDeleteLead, useGetLeadById } from "@/lib/api/leads/queries";
 const LeadProfilePage: FC = (): ReactElement => {
   const { t } = useTranslation();
 
-  const params = useParams() as { _id: string };
+  const params = useParams() as { id: string };
   const navigate = useNavigate();
-  const { data, isLoading } = useGetLeadById(params?._id);
-  const { mutateAsync } = useDeleteLead(params?._id);
+  const { data, isLoading } = useGetLeadById(params?.id);
+  const { mutateAsync } = useDeleteLead(params?.id);
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -33,7 +33,7 @@ const LeadProfilePage: FC = (): ReactElement => {
 
   const handleDelete = async () => {
     try {
-      await mutateAsync(params?._id);
+      await mutateAsync(params?.id);
       navigate(`${ROUTES.LEADS.ROOT}`);
     } catch (error) {
       console.error(error);
@@ -53,7 +53,7 @@ const LeadProfilePage: FC = (): ReactElement => {
       actions={
         <>
           <Link
-            to={`${ROUTES.LEADS.ROOT}/${params?._id}/${ROUTES.COMMON.EDIT}`}
+            to={`${ROUTES.LEADS.ROOT}/${params?.id}/${ROUTES.COMMON.EDIT}`}
             style={{ textDecoration: "none" }}
           >
             <Button
@@ -92,7 +92,7 @@ const LeadProfilePage: FC = (): ReactElement => {
           })}
         >
           <Typography variant="body2">
-            {getDisplayDateTime(data?.created)}
+            {getDisplayDateTime(data?.createdAt)}
           </Typography>
           <Typography variant="h5">{data?.role}</Typography>
 
@@ -212,7 +212,7 @@ const LeadProfilePage: FC = (): ReactElement => {
           },
         })}
       />
-      <Comments parentId={params?._id} />
+      <Comments parentId={params?.id} />
       {deleteModalOpen && (
         <ConfirmationModal
           title="deleteLead"
